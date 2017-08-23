@@ -36,17 +36,20 @@ public class Solution {
         int secondCountSimilarities = 0;
         for (char aLetter : secondCount.keySet()) {
             if (firstCount.containsKey(aLetter)) {
-                int sim = secondCount.get(aLetter)<=firstCount.get(aLetter) ? secondCount.get(aLetter) : firstCount.get(aLetter);
+                int sim = secondCount.get(aLetter)<=firstCount.get(aLetter) ? 
+                secondCount.get(aLetter) : firstCount.get(aLetter);
                 secondCountSimilarities += sim;
             }
         }
         for (char aLetter : firstCount.keySet()) {
             if (secondCount.containsKey(aLetter)) {
-                int sim = firstCount.get(aLetter)<=secondCount.get(aLetter) ? firstCount.get(aLetter) : secondCount.get(aLetter);
+                int sim = firstCount.get(aLetter)<=secondCount.get(aLetter) ? 
+                firstCount.get(aLetter) : secondCount.get(aLetter);
                 firstCountSimilarities += sim;
             }
         }
-        int totalToDelete = (first.length() - firstCountSimilarities) + (second.length() - secondCountSimilarities);
+        int totalToDelete = (first.length() - firstCountSimilarities) + 
+        (second.length() - secondCountSimilarities);
         return totalToDelete;
     }
   
@@ -57,3 +60,17 @@ public class Solution {
         System.out.println(numberNeeded(a, b));
     }
 }
+
+/*
+Assuming size n string for first and size m string for second.
+Runtime Analysis: First two for loops insert each character of the string into their respective hashmaps, takes O(n+m) 
+time to iterate through each string. Then next two for loops iterate through hashmaps, retrieving their values to 
+determine the count of each character, taking O(n+m) again. Hashmap retrievals are simply O(1) so they are not counted.
+Finally the calculation of the exact number of differences in letters to remove is also O(1).
+Total runtime: O(n+m+n+m) = O(2n + 2m) ~ approximately still O(N) time at maximum.
+Space Complexity: Hashmaps each take up O(n) + O(m) space. Maximum space needed is O(n+m).
+Optimization Analysis: Really only need one Hashmap to track changes, instead use one string and add characters to 
+hashmap, while the other string decrements from the values in the hashmap, and use counter to keep track of differences.
+Most upvoted solutions on Hackerrank simply use arrays/vectors and iterate throught the strings themselves to reduce
+space used.
+*/
