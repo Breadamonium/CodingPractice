@@ -9,31 +9,30 @@ The Node class is defined as follows:
      }
 */
 
-/* First solution I could think of for this problem, use recursive helper to check each 
-node of tree recursively, if left or right exist, do comparison check to see if still valid, if not return false,
-otherwise continue and check child nodes for same thing. Only half the test cases pass, so some corner case is missing,
-will investigate further later. */
+/* Previous solution did not account for the corner case in which a node in a sub-left-subright value was greater than 
+the root. My solution did not take into account of that and thus needs to run a max/min tracker to keep track of the 
+largest and smallest value a subnode can be so it does not violate a previous root value.*/
 
-    boolean recursiveCheck(Node root) {
-        if (root.left!=null) {
-            if (root.left.data > root.data) {
-                return false;
-            }
-            recursiveCheck(root.left);
-        }
-        if (root.right!=null) {
-            if (root.right.data < root.data) {
-                return false;
-            }
-            recursiveCheck(root.right);
-        }
-        return true;
-    }
-    boolean checkBST(Node root) {
-        if (recursiveCheck(root) == false) {
-            return false;
-        }
-        else {
+/* Example Corner Case Tree: 4 is greater than 3 despite being in a left subtree, it is greater than 2 which is valid.
+          3
+       /    \   
+      2      6
+     / \    / \
+    1   4  5   7
+*/
+
+//Easy solution from geeksforgeeks.com
+    boolean recursiveCheck(Node root, int min, int max) {
+        if (root == null) {
             return true;
         }
+        if (root.data < min || root.data > max) {
+            return false;
+        }
+ 
+        return (recursiveCheck(root.left, min, root.data-1) &&
+                recursiveCheck(root.right, root.data+1, max));
+    }
+    boolean checkBST(Node root) {
+        return recursiveCheck(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
