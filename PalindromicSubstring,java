@@ -4,7 +4,8 @@ class PalindromicSubstring {
         HashMap<String, Integer> substrings = new HashMap<String, Integer>();
         int count = 0;
         for (int first = 0; first < charString.length; first++) {
-            for (int second = first; second < charString.length; second++) {
+            for (int second = first+1; second < charString.length+1; second++) {
+                System.out.println(s.substring(first, second));
                  if(isPalindrome(s.substring(first,second))) {
                     count++;
                  }
@@ -18,7 +19,7 @@ class PalindromicSubstring {
        for (int i = s.length() - 1; i >= 0; i--) {
           reversed += Character.toString(s.charAt(i));
        }
-       if (reversed == s) {
+       if (reversed.equals(s)) {
            return true;
        }
        else {
