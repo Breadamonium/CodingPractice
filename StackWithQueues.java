@@ -1,4 +1,4 @@
-//#225
+//https://leetcode.com/problems/implement-stack-using-queues/description/ #225
 class MyStack {
 
     /** Initialize your data structure here. */

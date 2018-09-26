@@ -1,3 +1,4 @@
+//https://leetcode.com/problems/palindromic-substrings/description/ #647
 class PalindromicSubstring {
     public int countSubstrings(String s) {
         char[] charString = s.toCharArray();

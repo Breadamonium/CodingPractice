@@ -1,3 +1,4 @@
+//https://leetcode.com/problems/repeated-dna-sequences/description/ #187
 class RepeatedDNASequences {
     public List<String> findRepeatedDnaSequences(String s) {
         List<String> answerArray = new ArrayList<String>();

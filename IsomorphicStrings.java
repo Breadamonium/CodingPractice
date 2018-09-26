@@ -1,3 +1,4 @@
+//https://leetcode.com/problems/isomorphic-strings/description/ #205
 class IsomorphicStrings {
     public boolean isIsomorphic(String s, String t) {
         HashMap <Character, Character> mapping = new HashMap<Character, Character>();
