@@ -21,20 +21,26 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.
 */
 class Solution {
     public int maxProfit(int[] prices) {
+        if (prices==null || prices.length<2) {
+            return 0;
+        }
         int[] maxProfitArray = new int[prices.length];
-        for(int i = 0; i < prices.length; i++) {
-            for (int j = i + 1; j < prices.length; j++) {
-                if(prices[j]-prices[i]>maxProfitArray[i]){
-                    maxProfitArray[i] = prices[j] - prices[i];
-                }
+        int minBuyPrice = prices[0];
+
+        for(int i = 1; i < prices.length - 1; i++) {
+            if (prices[i] < minBuyPrice)  { 
+                minBuyPrice = prices[i];
             }
-        }
-        int bestProfit = 0;
-        for (int num : maxProfitArray) {
-            if (num > bestProfit) {
-                bestProfit = num;
+            if(maxProfitArray[i-1] < (prices[i] - minBuyPrice)) {
+                maxProfitArray[i] = (prices[i] - minBuyPrice);
             }
+            else {
+                maxProfitArray[i] = maxProfitArray[i-1];
+            }
+            System.out.println("price[i] =" +prices[i]);
+            System.out.println("maxProfit[i] = " + maxProfitArray[i]);
+            System.out.println("minBuyPrice =" + minBuyPrice);
         }
-        return bestProfit;
+        return maxProfitArray[prices.length-2];
     }
 }
