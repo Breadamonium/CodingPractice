@@ -27,7 +27,7 @@ class Solution {
         int[] maxProfitArray = new int[prices.length];
         int minBuyPrice = prices[0];
 
-        for(int i = 1; i < prices.length - 1; i++) {
+        for(int i = 1; i < prices.length; i++) {
             if (prices[i] < minBuyPrice)  { 
                 minBuyPrice = prices[i];
             }
@@ -37,10 +37,7 @@ class Solution {
             else {
                 maxProfitArray[i] = maxProfitArray[i-1];
             }
-            System.out.println("price[i] =" +prices[i]);
-            System.out.println("maxProfit[i] = " + maxProfitArray[i]);
-            System.out.println("minBuyPrice =" + minBuyPrice);
         }
-        return maxProfitArray[prices.length-2];
+        return maxProfitArray[prices.length-1];
     }
 }
