@@ -33,11 +33,6 @@ class ValidParentheses {
                 }
             }
         }
-        if (aStack.empty()) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return aStack.empty();
     }
 }
