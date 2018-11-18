@@ -1,3 +1,4 @@
+//Leetcode #264 https://leetcode.com/problems/ugly-number-ii
 class UglyNumber2 {
     
     HashMap<Integer, Boolean> memoized = new HashMap<Integer, Boolean>();

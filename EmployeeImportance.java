@@ -1,4 +1,5 @@
 /*
+Leetcode #690 https://leetcode.com/problems/employee-importance/
 // Employee info
 class Employee {
     // It's the unique id of each node;
