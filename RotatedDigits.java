@@ -6,29 +6,27 @@ class Solution {
         for (int i = 1; i <= N; i++) {
             String current = Integer.toString(i);
             boolean isRotateable = true;
+            boolean isDifferent = false;
             String rotated = "";
             for (char x : current.toCharArray()) {
                 if (x == '3' || x=='4' || x=='7') {
                     isRotateable = false;
                     break;
                 }
-                if (x == '0' || x =='1' || x == '8') {
-                    rotated += Character.toString(x);
-                }
                 if (x == '2') {
-                    rotated += "5";
+                    isDifferent = true;
                 }
                 if (x == '5') {
-                    rotated += "2";
+                    isDifferent = true;
                 }
                 if (x == '6') {
-                    rotated += "9";
+                    isDifferent = true;
                 }
                 if (x == '9') {
-                    rotated += "6";
+                    isDifferent = true;
                 }
             }
-            if (isRotateable && !rotated.equals(current)) {
+            if (isRotateable && isDifferent) {
                 counter++;
             }
         }
