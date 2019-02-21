@@ -78,4 +78,44 @@ class Solution {
         // return the resultant array 
         return anotherArray; 
     }
+
+    public List<List<Integer>> permute2(int[] nums) {
+        List<List<Integer>> finalAnswer = new ArrayList<>();        
+        List<Integer> initialNums = Arrays.stream(nums).boxed().collect(Collectors.toList());
+        finalAnswer.addAll(recursiveSwap(initialNums));
+        return finalAnswer;
+    }
+    
+    public List<List<Integer>> recursiveSwap(List<Integer> numsToSwap) {
+        List<List<Integer>> answer = new ArrayList<>();
+        if (numsToSwap.size() == 1) {
+            answer.add(numsToSwap);
+            return answer;
+        }
+        else if (numsToSwap.size() == 2) {
+            answer.add(numsToSwap);
+            List<Integer> swapped = new ArrayList<Integer>();
+            swapped.addAll(numsToSwap);
+            Collections.reverse(swapped);
+            answer.add(swapped);
+            return answer;
+        }
+        else {
+            for (int i = 0; i < numsToSwap.size(); i++) {
+                List<Integer> numsWithoutCurrent = new ArrayList<>();
+                numsWithoutCurrent.addAll(numsToSwap);
+                numsWithoutCurrent.remove(i);
+                List<List<Integer>> recursiveResult = recursiveSwap(numsWithoutCurrent);
+                for (int j = 0; j < recursiveResult.size(); j++) {
+                    System.out.println("j" + j);
+                    System.out.println("i" + i);
+                    List<Integer> temp = new ArrayList<Integer>();
+                    temp.add(numsToSwap.get(i));
+                    temp.addAll(recursiveResult.get(j));
+                    answer.add(temp);
+                }
+            }
+            return answer;
+        }
+    }
 }
