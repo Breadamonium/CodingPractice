@@ -80,7 +80,7 @@ class Solution {
     }
 
     public List<List<Integer>> permute2(int[] nums) {
-        List<List<Integer>> finalAnswer = new ArrayList<>();        
+        List<List<Integer>> finalAnswer = new ArrayList<>();
         List<Integer> initialNums = Arrays.stream(nums).boxed().collect(Collectors.toList());
         finalAnswer.addAll(recursiveSwap(initialNums));
         return finalAnswer;

@@ -1,39 +1,61 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
 //#78 https://leetcode.com/problems/subsets/
 
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
-        List<List<Integer>> finalAnswer = new ArrayList<ArrayList<Integer>>():
-        finalAnswer.add(new ArrayList<Integer>)();
-        
-        ArrayList<Integer> initialNums = new ArrayList<Integer>(Arrays.asList(nums));
-        finalAnswer.addAll(recursiveSwap(initialNums));
-        return finalAnswer;
+        HashSet<List<Integer>> duplicate = new HashSet<List<Integer>>();
+        List<List<Integer>> answer = new ArrayList<>();
+        for (int numToRemove = 0; numToRemove<nums.length; numToRemove++){
+            int[] downArray = removeTheElement(nums, numToRemove);
+            duplicate.add(downArray);
+        }
+        HashSet<List<Integer>> duplicates = recursive(duplicate, nums);
+        for (List<Integer> aSet : duplicates) {
+            answer.add(aSet);
+        }
     }
-    
-    public List<List<Integer>> recursiveSwap(List<Integer> numsToSwap) {
-        List<List<Integer>> answer = new ArrayList<ArrayList<Integer>>();
-        if (numsToSwap.size() == 1) {
-            answer.add(numsToSwap);
-            return answer;
+    public HashSet<List<Integer>> recursive(HashSet<List<Integer>> seen, int[] toCheck) {
+        HashSet<List<Integer>> duplicates = 
+        for (int i = 0; i<toCheck.length; i++){
+            int[] downArray = removeTheElement(toCheck, i);
+            seen.add(downArray);
+            return seen;
         }
-        else if (numsToSwap.size() == 2) {
-            answer.add(numsToSwap);
-            answer.add(Collections.reverse(numsToSwap));
-            return answer;
-        }
-        else {
-            for (int i = 0; i < numsToSwap.size(); i++) {
-                List<Integer> numsWithoutCurrent = numsToSwap;
-                numsWithoutCurrent.remove(i);
-                List<List<Integer>> recursiveResult = recursiveSwap(numsWithoutCurrent);
-                for (int j = 0; j < recursiveResult.size(); j++) {
-                    List<Integer> temp = new ArrayList<Integer>();
-                    temp.add(numsToSwap.get(i));
-                    temp.addAll(recursiveResult.get(j));
-                    answer.add(temp);
-                }
-            }
-            return answer;
-        }
+    }
+    public static int[] removeTheElement(int[] arr, int index) { 
+
+        // If the array is empty 
+        // or the index is not in array range 
+        // return the original array 
+        if (arr == null
+        || index < 0
+        || index >= arr.length) { 
+
+        return arr; 
+        } 
+
+        // Create another array of size one less 
+        int[] anotherArray = new int[arr.length - 1]; 
+
+        // Copy the elements except the index 
+        // from original array to the other array 
+        for (int i = 0, k = 0; i < arr.length; i++) { 
+
+        // if the index is 
+        // the removal element index 
+        if (i == index) { 
+        continue; 
+        } 
+
+        // if the index is not 
+        // the removal element index 
+        anotherArray[k++] = arr[i]; 
+        } 
+
+        // return the resultant array 
+        return anotherArray; 
     }
 }

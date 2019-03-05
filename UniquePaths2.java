@@ -15,6 +15,7 @@ class UniquePaths2 {
                 break;
             }
         }
+        
         for (int j = row - 1; j >= 0; j--) {
             if (obstacleGrid[j][col - 1] == 0) {
                 numWays[j][col - 1] = 1;
