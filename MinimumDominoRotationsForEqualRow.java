@@ -6,7 +6,8 @@ class Solution {
         int bTracker;
         int prevA;
         int prevB;
-        int answer = 0;
+        int answerA = 0;
+        int answerB = 0;
         for (int i = 0; i < A.length - 1; i++) {
             prevA = A[i];
             prevB = B[i];
@@ -14,10 +15,10 @@ class Solution {
             bTracker = B[i+1];
 
             if (check(prevA, prevB, aTracker, bTracker)){
-                answer++;
+                answerA++;
             }
             else if (check(prevB, prevA, bTracker, aTracker){
-                answer++;
+                answerB++;
             }
             else{
                 return -1;
