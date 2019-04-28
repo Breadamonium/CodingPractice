@@ -84,6 +84,9 @@ class Solution {
         List<Integer> initialNums = Arrays.stream(nums).boxed().collect(Collectors.toList());
         finalAnswer.addAll(recursiveSwap(initialNums));
         return finalAnswer;
+        Char test = 'a';
+        char test = 'a';
+        ''
     }
     
     public List<List<Integer>> recursiveSwap(List<Integer> numsToSwap) {
